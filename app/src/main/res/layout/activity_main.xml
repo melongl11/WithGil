@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fabColor="#ff9c10"
-            app:fabIcon="@drawable/baseline_settings_white_24"
+            app:fabIcon="@drawable/main_floating_setting"
             app:fabSizes="mini" />
 
         <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fabColor="#0b7bc1"
-            app:fabIcon="@drawable/baseline_directions_walk_white_24"
+            app:fabIcon="@drawable/main_floating_scout"
             app:fabSizes="mini" />
 
         <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
@@ -65,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fabColor="#ea201c"
-            app:fabIcon="@drawable/baseline_mail_white_24"
+            app:fabIcon="@drawable/main_floating_mail"
             app:fabSizes="mini" />
 
     </com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout>
