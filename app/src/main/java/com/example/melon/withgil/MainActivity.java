@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
 
         FloatingActionButton fab_emergency_call = (FloatingActionButton) findViewById(R.id.fab_emergency_call);
-        FloatingActionButton fab_settings = findViewById(R.id.fab_settings);
-        FloatingActionButton fab_protector = findViewById(R.id.fab_contact_protector);
+        FloatingActionButton fab_settings = (FloatingActionButton)  findViewById(R.id.fab_settings);
+        FloatingActionButton fab_protector =  (FloatingActionButton) findViewById(R.id.fab_contact_protector);
         fab_emergency_call.setOnClickListener(this);
         fab_settings.setOnClickListener(this);
         fab_protector.setOnClickListener(this);
