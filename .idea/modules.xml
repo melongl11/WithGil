@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/WithGil.iml" filepath="$PROJECT_DIR$/WithGil.iml" />
-      <module fileurl="file://C:\Users\melon\StudioProjects\WithGil\.idea\WithGil.iml" filepath="C:\Users\melon\StudioProjects\WithGil\.idea\WithGil.iml" />
-      <module fileurl="file://C:\Users\amk0928\StudioProjects\WithGil\WithGil.iml" filepath="C:\Users\amk0928\StudioProjects\WithGil\WithGil.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

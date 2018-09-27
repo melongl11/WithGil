@@ -5,4 +5,6 @@ package com.example.melon.withgil;
  */
 
 public class UserInfo {
+    //보호자 연락처
+    //
 }
