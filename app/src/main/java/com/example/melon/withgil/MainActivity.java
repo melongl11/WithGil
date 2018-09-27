@@ -130,14 +130,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             case R.id.fab_contact_protector:
                 Intent protectorIntent = new Intent(MainActivity.this, ProtectorActivity.class);
                 startActivity(protectorIntent);
+                break;
 
             case R.id.fab_settings:
                 Intent settingIntent = new Intent(MainActivity.this, SettingActivity.class);
                 startActivity(settingIntent);
+                break;
 
             case R.id.fab_emergency_call:
                 Intent emergencyCallIntent = new Intent("android.intent.action.DIAL", Uri.parse("tel:112"));
                 startActivity(emergencyCallIntent);
+                break;
         }
     }
 }
