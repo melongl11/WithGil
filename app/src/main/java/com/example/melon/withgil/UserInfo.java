@@ -5,6 +5,6 @@ package com.example.melon.withgil;
  */
 
 public class UserInfo {
-    //보호자 연락처
+    // 보호자 전화번호, 문자 내용
     //
 }

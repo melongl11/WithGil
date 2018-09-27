@@ -128,11 +128,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab_contact_protector:
-                Intent protectorIntent = new Intent(MainActivity.this, ProtectorActivity.class);
-                startActivity(protectorIntent);
+
                 break;
 
             case R.id.fab_settings:
+                // 비밀번호, 문자 셋팅,
                 Intent settingIntent = new Intent(MainActivity.this, SettingActivity.class);
                 startActivity(settingIntent);
                 break;
@@ -140,6 +140,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             case R.id.fab_emergency_call:
                 Intent emergencyCallIntent = new Intent("android.intent.action.DIAL", Uri.parse("tel:112"));
                 startActivity(emergencyCallIntent);
+                break;
+
+            case R.id.fab_scout:
+                Intent dasanCallIntent = new Intent("android.intent.action.DIAL", Uri.parse("tel:120"));
+                startActivity(dasanCallIntent);
                 break;
         }
     }
