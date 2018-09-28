@@ -2,6 +2,7 @@ package com.example.melon.withgil;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -10,8 +11,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         "If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
                 .setGotoSettingButtonText("bla bla")
                 .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION)
+                .setPermissions(Manifest.permission.SEND_SMS)
                 .check();
 
 
@@ -128,7 +132,45 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab_contact_protector:
+                UserInfoDatabase userInfoDatabase = new UserInfoDatabase(this, "userinfo.db", null, 1);
+                //TODO : USERINFO DB 설계 - 일단 Setting 부분이 확정안됨
+                String pNum = null;
+                String text = "";
+                //pNum = userInfoDatabase.getUserInfo();
 
+                //pNum = "01085055354"; 번호 넣고 테스트했을때 문제없음(Permission 요청할때 Send SMS도 추가함)
+                text = "지금 출발합니다.";
+
+                if(pNum != null) {  //보호자 전화번호를 DB에서 받아 온 경우
+                    final String phoneNo = pNum;
+                    final String sms = text;
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                    alertDialogBuilder.setTitle("문자 전송");
+                    alertDialogBuilder
+                            .setMessage(pNum + "에 출발 문자를 전송하시겠습니까?")
+                            .setCancelable(true)
+                            .setPositiveButton("전송",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            //문자전송
+                                            SmsManager smsManager = SmsManager.getDefault();
+                                            smsManager.sendTextMessage(phoneNo, null, sms, null, null);
+                                        }
+                                    })
+                            .setNegativeButton("취소",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            dialogInterface.cancel();
+                                        }
+                                    });
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+
+                } else {    //보호자 전화번호를 DB에서 받아오지 못한 경우
+                    Toast.makeText(this, "저장된 보호자 전화번호가 없습니다.\n환경 설정에서 보호자 전화번호를 저장하세요.", Toast.LENGTH_LONG).show();
+                }
                 break;
 
             case R.id.fab_settings:
