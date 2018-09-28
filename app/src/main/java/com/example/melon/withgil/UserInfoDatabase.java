@@ -28,7 +28,7 @@ public class UserInfoDatabase extends SQLiteOpenHelper {
     public void addUser(String pNum) {
         SQLiteDatabase db = getWritableDatabase();
         String sqlDelete = "DELETE FROM USERINFO";
-        String sql = "INSERT INTO USERINFO(phone_number) VALUES (" + pNum + ")";
+        String sql = "INSERT INTO USERINFO(phone_number) VALUES ('" + pNum + "')";
         db.execSQL(sqlDelete);
         db.execSQL(sql);
         Log.d("Log : pNum input db", pNum);

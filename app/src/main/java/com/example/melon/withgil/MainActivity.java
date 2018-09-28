@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -27,6 +28,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton;
@@ -126,6 +129,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastLatLng, (float) 15));
 
+        PolylineOptions polylineOptions = new PolylineOptions()
+                .add(new LatLng(35.542858, 128.495399), new LatLng(35.544006, 128.495368), new LatLng(35.543998, 128.494813))
+                .width(25)
+                .color(Color.BLUE)
+                .geodesic(true);
+        Polyline line = mMap.addPolyline(polylineOptions);
     }
 
 
@@ -148,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
                     alertDialogBuilder.setTitle("문자 전송");
                     alertDialogBuilder
-                            .setMessage("0" + pNum + "에 출발 문자를 전송하시겠습니까?")
+                            .setMessage(pNum + "에 출발 문자를 전송하시겠습니까?")
                             .setCancelable(true)
                             .setPositiveButton("전송",
                                     new DialogInterface.OnClickListener() {
