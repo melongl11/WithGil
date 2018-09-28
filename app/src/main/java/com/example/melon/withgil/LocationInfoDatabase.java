@@ -19,7 +19,7 @@ public class LocationInfoDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE LOCATIONINFO(idx integer PRIMARY KEY, rat real, lon real);");
+        sqLiteDatabase.execSQL("CREATE TABLE LOCATIONINFO(idx integer PRIMARY KEY, lat real, lon real);");
         addLocation(18, 37.576278, 126.893896);
         addLocation(18, 37.377964, 126.896741);
 
@@ -37,9 +37,9 @@ public class LocationInfoDatabase extends SQLiteOpenHelper {
 
     }
 
-    public void addLocation(int idx, double rat, double lon) {
+    public void addLocation(int idx, double lat, double lon) {
         SQLiteDatabase db = getWritableDatabase();
-        String sql = "INSERT INTO LOCATIONINFO(idx, rat, lon) VALUES (" + idx + ", " + rat + ", " + lon + ")";
+        String sql = "INSERT INTO LOCATIONINFO(idx, lat, lon) VALUES (" + idx + ", " + lat + ", " + lon + ")";
         db.execSQL(sql);
         //db.execSQL(sql, new Object[]{userInfo.getUid(), userInfo.getPhone_number(), userInfo.getName(), userInfo.getSex(), userInfo.getBirthday(), userInfo.getEmail(), userInfo.getNation()});
         //Log.d("userInfoDatabase", userInfo.getUid());

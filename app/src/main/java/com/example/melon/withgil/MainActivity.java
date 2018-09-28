@@ -15,6 +15,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -136,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 //TODO : USERINFO DB 설계 - 일단 Setting 부분이 확정안됨
                 String pNum = null;
                 String text = "";
-                //pNum = userInfoDatabase.getUserInfo();
+                pNum = userInfoDatabase.getUserInfo();
 
                 //pNum = "01085055354"; 번호 넣고 테스트했을때 문제없음(Permission 요청할때 Send SMS도 추가함)
                 text = "지금 출발합니다.";
@@ -147,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
                     alertDialogBuilder.setTitle("문자 전송");
                     alertDialogBuilder
-                            .setMessage(pNum + "에 출발 문자를 전송하시겠습니까?")
+                            .setMessage("0" + pNum + "에 출발 문자를 전송하시겠습니까?")
                             .setCancelable(true)
                             .setPositiveButton("전송",
                                     new DialogInterface.OnClickListener() {
@@ -155,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             //문자전송
                                             SmsManager smsManager = SmsManager.getDefault();
-                                            smsManager.sendTextMessage(phoneNo, null, sms, null, null);
+                                            smsManager.sendTextMessage("0" + phoneNo, null, sms, null, null);
                                         }
                                     })
                             .setNegativeButton("취소",

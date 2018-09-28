@@ -1,5 +1,6 @@
 package com.example.melon.withgil;
 
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -9,10 +10,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        mMap.addPolyline((new PolylineOptions()
+                .add(new LatLng(37.576278, 126.893896))
+                .add(new LatLng(37.577964, 126.896741)).width(200).color(Color.RED)));
+
     }
 
 
@@ -38,9 +47,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        mMap.addPolyline((new PolylineOptions()
+                .add(new LatLng(37.576278, 126.893896))
+                .add(new LatLng(37.577964, 126.896741)).width(200).color(Color.RED)));
+
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+
     }
 }

@@ -17,7 +17,7 @@ public class UserInfoDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE USERINFO( uId text PRIMARY KEY, phone_number text, name text, sex text, birthday text, email text, nation text);");
+        sqLiteDatabase.execSQL("CREATE TABLE USERINFO(phone_number text PRIMARY KEY);");
     }
 
     @Override
@@ -25,26 +25,30 @@ public class UserInfoDatabase extends SQLiteOpenHelper {
 
     }
 
-    public void addUser(UserInfo userInfo) {
+    public void addUser(String pNum) {
         SQLiteDatabase db = getWritableDatabase();
-        String sql = "INSERT INTO USERINFO(uid, phone_number, name, sex, birthday, email, nation) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sqlDelete = "DELETE FROM USERINFO";
+        String sql = "INSERT INTO USERINFO(phone_number) VALUES (" + pNum + ")";
+        db.execSQL(sqlDelete);
+        db.execSQL(sql);
+        Log.d("Log : pNum input db", pNum);
         //db.execSQL(sql, new Object[]{userInfo.getUid(), userInfo.getPhone_number(), userInfo.getName(), userInfo.getSex(), userInfo.getBirthday(), userInfo.getEmail(), userInfo.getNation()});
         //Log.d("userInfoDatabase", userInfo.getUid());
     }
 
-    public UserInfo getUserInfo(String uid) {
+    public String getUserInfo() {
         SQLiteDatabase db = getReadableDatabase();
-        String sql = "SELECT * FROM USERINFO WHERE uId = ?";
+        String sql = "SELECT * FROM USERINFO";
 
-        Cursor cursor = db.rawQuery(sql, new String[]{uid});
+        Cursor cursor = db.rawQuery(sql,null);
 
-        UserInfo userInfo = new UserInfo();
-        if(cursor.moveToFirst()) {
-            //Log.d("userInfoDatabase2", userInfo.getUid());
+        while(cursor.moveToNext()){
+            Log.d("Log : pNum output db", cursor.getString(0));
+            return cursor.getString(0);
         }
         cursor.close();
 
-        return userInfo;
+        return null;
     }
 
     public void updateUser(String uid, String attribute,  String updateValue) {
