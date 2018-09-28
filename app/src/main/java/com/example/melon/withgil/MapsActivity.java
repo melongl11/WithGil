@@ -27,10 +27,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        mMap.addPolyline((new PolylineOptions()
-                .add(new LatLng(37.576278, 126.893896))
-                .add(new LatLng(37.577964, 126.896741)).width(200).color(Color.RED)));
-
     }
 
 
@@ -46,10 +42,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        mMap.addPolyline((new PolylineOptions()
-                .add(new LatLng(37.576278, 126.893896))
-                .add(new LatLng(37.577964, 126.896741)).width(200).color(Color.RED)));
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
