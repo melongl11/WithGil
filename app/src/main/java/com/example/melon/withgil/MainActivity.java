@@ -132,11 +132,18 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastLatLng, (float) 15));
 
         PolylineOptions polylineOptions = new PolylineOptions()
-                .add(new LatLng(35.542858, 128.495399), new LatLng(35.544006, 128.495368), new LatLng(35.543998, 128.494813))
+                .add(new LatLng(37.576278, 126.893896), new LatLng(37.577964, 126.896741))
                 .width(25)
-                .color(Color.BLUE)
+                .color(Color.CYAN)
                 .geodesic(true);
         Polyline line = mMap.addPolyline(polylineOptions);
+        //상암 안심길
+
+        /*
+        mMap.addPolyline((new PolylineOptions()
+                .add(new LatLng(37.576278, 126.893896))
+                .add(new LatLng(37.577964, 126.896741)).width(200).color(Color.RED)));
+         */
     }
 
 
