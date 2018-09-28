@@ -55,9 +55,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         FloatingActionButton fab_emergency_call = (FloatingActionButton) findViewById(R.id.fab_emergency_call);
         FloatingActionButton fab_settings = (FloatingActionButton)  findViewById(R.id.fab_settings);
         FloatingActionButton fab_protector =  (FloatingActionButton) findViewById(R.id.fab_contact_protector);
+        FloatingActionButton fab_scout = (FloatingActionButton) findViewById(R.id.fab_scout);
         fab_emergency_call.setOnClickListener(this);
         fab_settings.setOnClickListener(this);
         fab_protector.setOnClickListener(this);
+        fab_scout.setOnClickListener(this);
 
 
         PermissionListener permissionListener = new PermissionListener() {
@@ -189,14 +191,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 startActivity(settingIntent);
                 break;
 
+            case R.id.fab_scout:
+                Log.d("fab_scout :", "hello");
+                Intent dasanCallIntent = new Intent("android.intent.action.DIAL", Uri.parse("tel:120"));
+                startActivity(dasanCallIntent);
+                break;
+
             case R.id.fab_emergency_call:
                 Intent emergencyCallIntent = new Intent("android.intent.action.DIAL", Uri.parse("tel:112"));
                 startActivity(emergencyCallIntent);
-                break;
-
-            case R.id.fab_scout:
-                Intent dasanCallIntent = new Intent("android.intent.action.DIAL", Uri.parse("tel:120"));
-                startActivity(dasanCallIntent);
                 break;
         }
     }
