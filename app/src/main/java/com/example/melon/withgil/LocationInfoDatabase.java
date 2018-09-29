@@ -19,17 +19,7 @@ public class LocationInfoDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE LOCATIONINFO(idx integer PRIMARY KEY, lat real, lon real);");
-        addLocation(18, 37.576278, 126.893896);
-        addLocation(18, 37.377964, 126.896741);
-
-        addLocation(16, 37.556650, 126.898984);
-        addLocation(16, 37.557738, 126.904251);
-
-        addLocation(8, 37.562714, 126.931413);
-        addLocation(8, 37.563042, 126.931553);
-        addLocation(8, 37.563735, 126.932880);
-        addLocation(8, 37.564008, 126.933059);
+        sqLiteDatabase.execSQL("CREATE TABLE LOCATIONINFO(idx integer, lat real, lon real);");
     }
 
     @Override

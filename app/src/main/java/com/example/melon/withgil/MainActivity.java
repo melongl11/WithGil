@@ -81,6 +81,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         "If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
                 .setGotoSettingButtonText("bla bla")
                 .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION)
+                .check();
+        new TedPermission(this)
+                .setPermissionListener(permissionListener)
+                .setRationaleMessage(R.string.rationale_message)
+                .setDeniedMessage(
+                        "If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
+                .setGotoSettingButtonText("bla bla")
                 .setPermissions(Manifest.permission.SEND_SMS)
                 .check();
 
@@ -131,13 +138,63 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastLatLng, (float) 15));
 
+        MapInfoDatabase mapInfoDatabase = new MapInfoDatabase(this, "mapinfo.db", null, 1);
+        LocationInfoDatabase locationInfoDatabase = new LocationInfoDatabase(this, "locationinfo.db", null, 1);
+        int idx = 0;
+        String district = "서대문";
+        String region = "연희";
+        idx = mapInfoDatabase.getRegionInfo(district, region);
+        if(idx == 0){
+            mapInfoDatabase.addRegion(18, "마포", "상암");
+            mapInfoDatabase.addRegion(16, "마포", "망원");
+            mapInfoDatabase.addRegion(8, "서대문", "연희");
+
+            locationInfoDatabase.addLocation(18, 37.576278, 126.893896);
+            locationInfoDatabase.addLocation(18, 37.577964, 126.896741);
+
+            locationInfoDatabase.addLocation(16, 37.556650, 126.898984);
+            locationInfoDatabase.addLocation(16, 37.557738, 126.904251);
+
+            locationInfoDatabase.addLocation(8, 37.562714, 126.931413);
+            locationInfoDatabase.addLocation(8, 37.563042, 126.931553);
+            locationInfoDatabase.addLocation(8, 37.563735, 126.932880);
+            locationInfoDatabase.addLocation(8, 37.564008, 126.933059);
+            idx = mapInfoDatabase.getRegionInfo(district, region);
+        }
+        ArrayList<Double> points = locationInfoDatabase.getLocation(idx);
+        Log.d("Log : db output idx", String.valueOf(idx));
+/*
         PolylineOptions polylineOptions = new PolylineOptions()
                 .add(new LatLng(37.576278, 126.893896), new LatLng(37.577964, 126.896741))
                 .width(25)
-                .color(Color.CYAN)
+                .color(Color.RED)
                 .geodesic(true);
         Polyline line = mMap.addPolyline(polylineOptions);
         //상암 안심길
+        */
+
+        PolylineOptions polylineOptions = new PolylineOptions();
+        for(int i=0; i<points.size();i+=2){
+            Log.d("db output point", String.valueOf(points.get(i) + " " +points.get(i+1)));
+            polylineOptions.add(new LatLng(points.get(i), points.get(i+1)));
+        }
+        polylineOptions.width(25)
+                .color(Color.CYAN)
+                .geodesic(true);
+        Polyline line = mMap.addPolyline(polylineOptions);
+        /*
+        PolylineOptions polylineOptions = new PolylineOptions()
+                .width(25)
+                .color(Color.CYAN)
+                .geodesic(true);
+        //상암 안심길
+
+        for(int i=0; i<points.size();i+=2){
+            polylineOptions.add(new LatLng(points.get(i), points.get(i+1)));
+        }
+
+        Polyline line = mMap.addPolyline(polylineOptions);
+*/
 
         /*
         mMap.addPolyline((new PolylineOptions()
