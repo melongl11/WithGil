@@ -176,9 +176,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             Log.d("db output point", String.valueOf(points.get(i) + " " +points.get(i+1)));
             polylineOptions.add(new LatLng(points.get(i), points.get(i+1)));
         }
-        polylineOptions.width(25)
-                .color(Color.CYAN)
-                .geodesic(true);
+        polylineOptions.width(15)
+                .color(Color.argb(255, 114, 62, 189));
+                //.geodesic(true);
         Polyline line = mMap.addPolyline(polylineOptions);
         /*
         PolylineOptions polylineOptions = new PolylineOptions()
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         /*
         mMap.addPolyline((new PolylineOptions()
                 .add(new LatLng(37.576278, 126.893896))
-                .add(new LatLng(37.577964, 126.896741)).width(200).color(Color.RED)));
+                .add(new LatLng(37.577964, 126.896741)).width(200).color(Color.argb(255, 114, 62, 189))));
          */
     }
 
@@ -287,8 +287,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         polylineOptions.add(new LatLng(points.get(i), points.get(i+1)));
                     }
                     polylineOptions.width(25)
-                            .color(Color.CYAN)
-                            .geodesic(true);
+                        .color(Color.argb(255, 114, 62, 189));
+                        //.geodesic(true);
                     Polyline line = mMap.addPolyline(polylineOptions);
 
                     break;
