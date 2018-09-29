@@ -5,6 +5,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class MapInfoDatabase extends SQLiteOpenHelper {
     public MapInfoDatabase(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -40,6 +43,19 @@ public class MapInfoDatabase extends SQLiteOpenHelper {
         cursor.close();
 
         return 0;
+    }
+    public ArrayList<String> getRegionName(String district){
+        SQLiteDatabase db = getReadableDatabase();
+        String sql = "SELECT region FROM REGIONINFO WHERE district = '" + district + "'";
+        ArrayList<String> regionArr = new ArrayList<>();
+        Cursor cursor = db.rawQuery(sql, null);
+
+        while(cursor.moveToNext()) {
+            regionArr.add(cursor.getString(0));
+        }
+        cursor.close();
+
+        return regionArr;
     }
 
 }

@@ -140,9 +140,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         MapInfoDatabase mapInfoDatabase = new MapInfoDatabase(this, "mapinfo.db", null, 1);
         LocationInfoDatabase locationInfoDatabase = new LocationInfoDatabase(this, "locationinfo.db", null, 1);
+        DefaultRegionDatabase defaultRegionDatabase = new DefaultRegionDatabase(this, "defaultregion.db", null, 1);
         int idx = 0;
-        String district = "서대문";
-        String region = "연희";
+        String district = "마포";
+        String region = "상암";
+        try {
+            String[] DR = defaultRegionDatabase.getDR().split(" ");
+            district = DR[0];
+            region = DR[1];
+        } catch (Exception e){
+
+        }
         idx = mapInfoDatabase.getRegionInfo(district, region);
         if(idx == 0){
             mapInfoDatabase.addRegion(18, "마포", "상암");
@@ -162,16 +170,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             idx = mapInfoDatabase.getRegionInfo(district, region);
         }
         ArrayList<Double> points = locationInfoDatabase.getLocation(idx);
-        Log.d("Log : db output idx", String.valueOf(idx));
-/*
-        PolylineOptions polylineOptions = new PolylineOptions()
-                .add(new LatLng(37.576278, 126.893896), new LatLng(37.577964, 126.896741))
-                .width(25)
-                .color(Color.RED)
-                .geodesic(true);
-        Polyline line = mMap.addPolyline(polylineOptions);
-        //상암 안심길
-        */
 
         PolylineOptions polylineOptions = new PolylineOptions();
         for(int i=0; i<points.size();i+=2){
@@ -252,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             case R.id.fab_settings:
                 // 비밀번호, 문자 셋팅,
                 Intent settingIntent = new Intent(MainActivity.this, SettingActivity.class);
-                startActivity(settingIntent);
+                startActivityForResult(settingIntent, 3000);
                 break;
 
             case R.id.fab_scout:
@@ -265,6 +263,36 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Intent emergencyCallIntent = new Intent("android.intent.action.DIAL", Uri.parse("tel:112"));
                 startActivity(emergencyCallIntent);
                 break;
+        }
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK){
+            switch (requestCode){
+                case 3000:
+                    mMap.clear();
+
+                    MapInfoDatabase mapInfoDatabase = new MapInfoDatabase(this, "mapinfo.db", null, 1);
+                    LocationInfoDatabase locationInfoDatabase = new LocationInfoDatabase(this, "locationinfo.db", null, 1);
+                    int idx = 0;
+                    String district = data.getStringExtra("district");
+                    String region = data.getStringExtra("region");
+                    idx = mapInfoDatabase.getRegionInfo(district, region);
+                    ArrayList<Double> points = locationInfoDatabase.getLocation(idx);
+
+                    PolylineOptions polylineOptions = new PolylineOptions();
+                    for(int i=0; i<points.size();i+=2){
+                        Log.d("db output point", String.valueOf(points.get(i) + " " +points.get(i+1)));
+                        polylineOptions.add(new LatLng(points.get(i), points.get(i+1)));
+                    }
+                    polylineOptions.width(25)
+                            .color(Color.CYAN)
+                            .geodesic(true);
+                    Polyline line = mMap.addPolyline(polylineOptions);
+
+                    break;
+            }
         }
     }
 }

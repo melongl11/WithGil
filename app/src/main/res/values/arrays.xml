@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="district">
+        <item >마포</item>
+        <item >서대문</item>
+    </string-array>
+    <string-array name="region">
+        <item >상암</item>
+        <item >망원</item>
+    </string-array>
+</resources>
