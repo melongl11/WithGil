@@ -28,7 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:fabIcon="@drawable/baseline_call_black_36" />
+        app:fabColor="#FF0000"
+        app:fabIcon="@drawable/main_floating_emergency_call" />
 
     <com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout
         android:id="@+id/floating_layout"
@@ -49,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fabIcon="@drawable/main_floating_setting"
+            app:fabColor="@color/mainColor"
             app:fabSizes="mini" />
 
         <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
@@ -56,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fabIcon="@drawable/main_floating_scout"
+            app:fabColor="@color/mainColor"
             app:fabSizes="mini" />
 
         <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
@@ -63,6 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fabIcon="@drawable/main_floating_mail"
+            app:fabColor="@color/mainColor"
             app:fabSizes="mini"
             />
 
