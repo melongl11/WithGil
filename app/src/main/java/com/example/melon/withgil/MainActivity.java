@@ -35,11 +35,29 @@ import com.gun0912.tedpermission.TedPermission;
 import com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
 
     private GoogleMap mMap;
+
+    private void initData(MapInfoDatabase mapInfoDatabase, LocationInfoDatabase locationInfoDatabase){
+        mapInfoDatabase.addRegion(16, "마포", "망원");
+        mapInfoDatabase.addRegion(8, "서대문", "연희");
+        mapInfoDatabase.addRegion(18, "마포", "상암");
+
+        locationInfoDatabase.addLocation(18, 37.576278, 126.893896);
+        locationInfoDatabase.addLocation(18, 37.577964, 126.896741);
+
+        locationInfoDatabase.addLocation(16, 37.556650, 126.898984);
+        locationInfoDatabase.addLocation(16, 37.557738, 126.904251);
+
+        locationInfoDatabase.addLocation(8, 37.562714, 126.931413);
+        locationInfoDatabase.addLocation(8, 37.563042, 126.931553);
+        locationInfoDatabase.addLocation(8, 37.563735, 126.932880);
+        locationInfoDatabase.addLocation(8, 37.564008, 126.933059);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,20 +171,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         idx = mapInfoDatabase.getRegionInfo(district, region);
         if(idx == 0){
-            mapInfoDatabase.addRegion(18, "마포", "상암");
-            mapInfoDatabase.addRegion(16, "마포", "망원");
-            mapInfoDatabase.addRegion(8, "서대문", "연희");
-
-            locationInfoDatabase.addLocation(18, 37.576278, 126.893896);
-            locationInfoDatabase.addLocation(18, 37.577964, 126.896741);
-
-            locationInfoDatabase.addLocation(16, 37.556650, 126.898984);
-            locationInfoDatabase.addLocation(16, 37.557738, 126.904251);
-
-            locationInfoDatabase.addLocation(8, 37.562714, 126.931413);
-            locationInfoDatabase.addLocation(8, 37.563042, 126.931553);
-            locationInfoDatabase.addLocation(8, 37.563735, 126.932880);
-            locationInfoDatabase.addLocation(8, 37.564008, 126.933059);
+            initData(mapInfoDatabase, locationInfoDatabase);
             idx = mapInfoDatabase.getRegionInfo(district, region);
         }
         ArrayList<Double> points = locationInfoDatabase.getLocation(idx);
