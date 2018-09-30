@@ -675,26 +675,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         fab_scout.setOnClickListener(this);
 
 
-        PermissionListener permissionListener = new PermissionListener() {
-            @Override
-            public void onPermissionGranted() {
-                Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-                Toast.makeText(MainActivity.this, "Permission Denied \n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
-            }
-        };
-
-        new TedPermission(this)
-                .setPermissionListener(permissionListener)
-                .setRationaleMessage(R.string.rationale_message)
-                .setDeniedMessage(
-                        "If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
-                .setGotoSettingButtonText("bla bla")
-                .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.SEND_SMS)
-                .check();
 
 
     }
