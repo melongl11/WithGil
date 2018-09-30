@@ -737,12 +737,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         }
         idx = mapInfoDatabase.getRegionInfo(district, region);
-        if(idx == 0){
-            initData(mapInfoDatabase, locationInfoDatabase);
-            idx = mapInfoDatabase.getRegionInfo(district, region);
-        }
-        ArrayList<Double> points = locationInfoDatabase.getLocation(idx);
+        ArrayList<Double> points = new ArrayList<>();
+        try {
+            if (idx == 0) {
+                initData(mapInfoDatabase, locationInfoDatabase);
+                idx = mapInfoDatabase.getRegionInfo(district, region);
+            }
 
+            points = locationInfoDatabase.getLocation(idx);
+        } catch (Exception e){
+
+        }
         PolylineOptions polylineOptions = new PolylineOptions();
         for(int i=0; i<points.size();i+=2){
             Log.d("db output point", String.valueOf(points.get(i) + " " +points.get(i+1)));

@@ -34,9 +34,11 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         ImageView imageViewGuardian = findViewById(R.id.iv_guardian);
         ImageView imageViewLocation = findViewById(R.id.iv_location_select);
         ImageView imageViewHelp = findViewById(R.id.iv_help);
+        ImageView imageViewAppInfo = findViewById(R.id.iv_app_info);
         imageViewGuardian.setOnClickListener(this);
         imageViewLocation.setOnClickListener(this);
         imageViewHelp.setOnClickListener(this);
+        imageViewAppInfo.setOnClickListener(this);
 
 
     }
@@ -85,6 +87,11 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.iv_help:
                 Intent intentHelp = new Intent(SettingActivity.this, HelpActivity.class);
                 startActivity(intentHelp);
+                break;
+
+            case R.id.iv_app_info:
+                Intent intentAppInfo = new Intent(SettingActivity.this, AppInfoActivity.class);
+                startActivity(intentAppInfo);
                 break;
         }
 
