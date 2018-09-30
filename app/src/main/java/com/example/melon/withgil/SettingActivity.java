@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,8 +33,10 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
         ImageView imageViewGuardian = findViewById(R.id.iv_guardian);
         ImageView imageViewLocation = findViewById(R.id.iv_location_select);
+        ImageView imageViewHelp = findViewById(R.id.iv_help);
         imageViewGuardian.setOnClickListener(this);
         imageViewLocation.setOnClickListener(this);
+        imageViewHelp.setOnClickListener(this);
 
 
     }
@@ -78,6 +81,10 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
 
 
+                break;
+            case R.id.iv_help:
+                Intent intentHelp = new Intent(SettingActivity.this, HelpActivity.class);
+                startActivity(intentHelp);
                 break;
         }
 
