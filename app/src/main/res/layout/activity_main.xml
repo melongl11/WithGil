@@ -48,7 +48,6 @@
             android:id="@+id/fab_settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabColor="#ff9c10"
             app:fabIcon="@drawable/main_floating_setting"
             app:fabSizes="mini" />
 
@@ -56,7 +55,6 @@
             android:id="@+id/fab_scout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabColor="#0b7bc1"
             app:fabIcon="@drawable/main_floating_scout"
             app:fabSizes="mini" />
 
@@ -64,9 +62,9 @@
             android:id="@+id/fab_contact_protector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabColor="#ea201c"
             app:fabIcon="@drawable/main_floating_mail"
-            app:fabSizes="mini" />
+            app:fabSizes="mini"
+            />
 
     </com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout>
 
