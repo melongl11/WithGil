@@ -31,7 +31,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_setting);
 
         ImageView imageViewGuardian = findViewById(R.id.iv_guardian);
-        ImageView imageViewLocation = findViewById(R.id.iv_location);
+        ImageView imageViewLocation = findViewById(R.id.iv_location_select);
         imageViewGuardian.setOnClickListener(this);
         imageViewLocation.setOnClickListener(this);
 
@@ -47,7 +47,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(protectorIntent);
                 break;
 
-            case R.id.iv_location:
+            case R.id.iv_location_select:
                 LocationSettingDialog locationSettingDialog = new LocationSettingDialog(SettingActivity.this, district, region);
                 locationSettingDialog.setLocationSettingDialogListener(new LocationSettingDialogListener() {
                     @Override
