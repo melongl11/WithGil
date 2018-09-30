@@ -45,6 +45,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                         android.R.layout.simple_spinner_item, region);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner2.setAdapter(adapter);
+
                 spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

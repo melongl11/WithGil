@@ -20,8 +20,8 @@ public class ProtectorActivity extends AppCompatActivity {
         Toast.makeText(this, "저장 완료", Toast.LENGTH_LONG).show();
         EditText parentNum = (EditText) findViewById(R.id.ParentNum) ;
         String num = parentNum.getText().toString() ;
-        EditText messageCon = (EditText) findViewById(R.id.MessageCon) ;
-        String message = messageCon.getText().toString() ;
+        //EditText messageCon = (EditText) findViewById(R.id.MessageCon) ;
+        //String message = messageCon.getText().toString() ;
         UserInfoDatabase userInfoDatabase = new UserInfoDatabase(this, "userinfo.db", null, 1);
         userInfoDatabase.addUser(num);
         Log.d("Log : phoneNum", num.toString());

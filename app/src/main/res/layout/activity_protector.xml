@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:text="보호자 연락처 :"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,10 +32,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="전송메시지 내용 :"
+        android:text="전송메시지 내용 : 지금 출발합니다."
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/ParentNum"
         app:layout_constraintTop_toBottomOf="@+id/ParentNum" />
-
+<!--
     <EditText
         android:id="@+id/MessageCon"
         android:layout_width="fill_parent"
@@ -46,7 +47,7 @@
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
+-->
     <Button
         android:id="@+id/button"
         android:layout_width="146dp"
